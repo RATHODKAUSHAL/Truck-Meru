@@ -6,6 +6,7 @@ import {connectDB} from "./config/db.js"
 import 'dotenv/config'
 import CityRouter from "./routes/CityRoute.js"
 import userRouter from "./routes/userRoute.js"
+import ReviewRouter from "./routes/ReviewRoute.js"
 
 const app = express()
 const port = 3000
@@ -21,6 +22,7 @@ connectDB();
 app.use("/api/city", CityRouter)
 app.use("/images", express.static('uploads'))
 app.use("/api/user", userRouter )
+app.use("/api/review", ReviewRouter)
 
 
 //show api is working

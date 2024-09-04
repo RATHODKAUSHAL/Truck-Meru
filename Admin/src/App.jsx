@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Dashboard from "./component/Pages/Dashboard/Dashboard";
 import City from "./component/Pages/City/City";
@@ -9,14 +9,29 @@ import Add from './component/Pages/Add/Add';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Login from './component/Login/Login';
+import CustomerReview from './component/Pages/Customer-Review/CustomerReview';
+import CustomerList from './component/Pages/Customer-Review/CustomerList';
+import Faq from './component/Pages/FAQ/Faq';
+import FaqList from './component/Pages/FAQ/FaqList';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  useEffect(() => {
+    // Check if token is in localStorage
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
   const handleLogin = () => {
-    // Logic to authenticate user goes here
-    // If successful:
     setIsLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setIsLoggedIn(false);
   };
 
   return (
@@ -30,12 +45,16 @@ function App() {
           <Sidebar className="w-1/4" /> {/* Adjust width as needed */}
           <div className="flex flex-col flex-grow">
             <ToastContainer />
-            <Navbar className="h-16" /> {/* Adjust height as needed */}
+            <Navbar className="h-16" onLogout={handleLogout} /> {/* Adjust height as needed */}
             <div className="flex-grow overflow-auto p-4">
               <Routes>
                 <Route path="/admin/dashboard" element={<Dashboard />} />
                 <Route path="/admin/city" element={<City />} />
                 <Route path="/admin/city/add" element={<Add />} />
+                <Route path="/admin/Customer-List" element={<CustomerList />} />
+                <Route path="/admin/customer-review" element={<CustomerReview />} />
+                <Route path="/admin/faq" element={<Faq />} />
+                <Route path="/admin/faq-list" element={<FaqList />} />
                 {/* other routes... */}
               </Routes>
             </div>

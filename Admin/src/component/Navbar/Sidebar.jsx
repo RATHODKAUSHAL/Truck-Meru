@@ -1,5 +1,6 @@
+import { Link } from "react-router-dom";
 import React, { useState } from 'react';
-import { FaTruck, FaUser, FaMapMarkerAlt, FaBoxes, FaExternalLinkAlt, FaTruckMoving, FaDollarSign, FaBuilding, FaLink, FaStar } from 'react-icons/fa';
+import { FaTruck, FaUser, FaMapMarkerAlt, FaBoxes, FaExternalLinkAlt, FaTruckMoving, FaDollarSign, FaBuilding, FaLink, FaStar, FaQuora  } from 'react-icons/fa';
 
 const Sidebar = () => {
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -10,7 +11,7 @@ const Sidebar = () => {
 
   return (
     <>
-    <div className="h-screen w-64 bg-gray-800 text-white p-4">
+    <div className="h-screen w-64 bg-gray-700 text-white p-4">
     <div className="flex items-center sm:h-16 sm:w-44 mb-4">
       <a href="/">
         <img
@@ -67,30 +68,30 @@ const Sidebar = () => {
         <span>External Trackings</span>
       </a>
 
-      <a href="/admin/driver-master" className="flex items-center p-2 hover:bg-gray-700 rounded">
+      <Link to={"/admin/transport"} className="flex items-center p-2 hover:bg-gray-700 rounded">
         <FaTruckMoving className="mr-3" />
-        <span>Driver Master</span>
-      </a>
+        <span>Transport</span>
+      </Link>
 
       <a href="/admin/pricing" className="flex items-center p-2 hover:bg-gray-700 rounded">
         <FaDollarSign className="mr-3" />
         <span>Pricing</span>
       </a>
 
-      <a href="/admin/company" className="flex items-center p-2 hover:bg-gray-700 rounded">
-        <FaBuilding className="mr-3" />
-        <span>Company</span>
-      </a>
+      <Link to={"/admin/faq-list"} className="flex items-center p-2 hover:bg-gray-700 rounded">
+        <FaQuora  className="mr-3" />
+        <span>FAQ</span>
+      </Link>
 
       <a href="/admin/site-urls" className="flex items-center p-2 hover:bg-gray-700 rounded">
         <FaLink className="mr-3" />
         <span>Site URLs</span>
       </a>
 
-      <a href="/admin/customer-review" className="flex items-center p-2 hover:bg-gray-700 rounded">
+      <Link to={"/admin/Customer-List"} className="flex items-center p-2 hover:bg-gray-700 rounded">
         <FaStar className="mr-3" />
         <span>Customer Review</span>
-      </a>
+      </Link>
     </nav>
   </div>
 

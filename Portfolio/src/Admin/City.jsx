@@ -43,7 +43,7 @@ const City = () => {
           <CityHeader city={cityName} />
           <CityDetails city={cityName}/>
           <ProcessSteps/>
-          <Testimonials/>
+          <Testimonials city={cityName}/>
           <CitySection/>
           <Footer/>
             {/* Passing the city name to CityHeader */}

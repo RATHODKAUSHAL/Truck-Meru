@@ -68,13 +68,20 @@ const Add = () => {
         className="flex flex-col p-4 md:p-6 lg:p-8 bg-white shadow-md rounded-lg"
         onSubmit={onSubmitHandler}
       >
-        <div className="flex justify-end mb-6">
+        <div className="flex gap-3 justify-end mb-6">
           <button
             type="submit"
             className="bg-red-600 text-white rounded-full py-2 px-4 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-50 transition"
           >
             ADD
           </button>
+          <a
+          href="/admin/city"
+            type="submit"
+            className="bg-blue-600 text-white rounded-full py-2 px-4 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50 transition"
+          >
+            Back
+          </a>
         </div>
 
         <div className="add-img-upload flex flex-col items-center mb-10">
