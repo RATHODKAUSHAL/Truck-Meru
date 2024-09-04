@@ -1,0 +1,23 @@
+.login-popup{
+    z-index: 1;
+    background-color: #00000090; 
+}
+
+.login-popup-container{
+    width: max(23vw, 330px);
+    font-size: 14px;
+    border-radius: 8px;
+    animation: fadeIn 0.5s;
+}
+
+
+.login-popup-inputs input{
+    outline: none;
+    border: 1px solid #c9c9c9;
+    padding: 10px;
+    border-radius: 4px;
+}   
+
+
+
+
