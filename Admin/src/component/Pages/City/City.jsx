@@ -7,7 +7,7 @@ const City = () => {
   const url = "http://localhost:3000";
   const [list, setList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 1;
+  const itemsPerPage = 5;
 
   const fetchList = async () => {
     const response = await axios.get(`${url}/api/city/list`);

@@ -7,6 +7,7 @@ import Testimonials from '../components/Cities/Card/Card/Card'
 import ProcessSteps from '../components/Cities/ProcessSteps/ProcessSteps'
 import axios from 'axios';
 import CityDetails from '../components/Cities/CityDetails/CityDetails';
+import Faq from '../components/Cities/FAQ/Faq'
 
 const City = () => {
     const [cityComponents, setCityComponents] = useState({});
@@ -45,6 +46,7 @@ const City = () => {
           <ProcessSteps/>
           <Testimonials city={cityName}/>
           <CitySection/>
+          <Faq city={cityName}/>
           <Footer/>
             {/* Passing the city name to CityHeader */}
         </>

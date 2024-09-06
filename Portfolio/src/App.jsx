@@ -8,7 +8,6 @@ import Contact from './components/Contact/Contact';
 import FAQ from './components/FAQ/Faq';
 import Login from './components/Login/Login';
 import City from './Admin/City';
-import Admin from './Admin/Admin'
 
 
 function App() {
@@ -23,7 +22,6 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/:city' element={<City/>} />
-        <Route path='/Admin' element={<Admin/>}/>
         <Route path='/about' element={<About />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/faq' element={<FAQ />} />
