@@ -1,6 +1,38 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 const FaqList = () => {
+  const url = "http://localhost:3000";
+  const [faq, setFaq] = useState([]);
+
+  const fetchFaq = async () => {
+    const response = await axios.get(`${url}/api/faq/list`);
+    if(response.data.success){
+      console.table(response.data.data);
+      setFaq(response.data.data);
+    }else{
+      toast.error("Error");
+    }
+  };
+
+  const removeFaq = async (faqId) => {
+    const response = await axios.post(`${url}/api/faq/delete`, {
+      id:faqId,
+    });
+    console.log(response.data);
+    await fetchFaq();
+    if(response.data.success){
+      toast.success(response.data.message);
+    }else{
+      toast.error("Error")
+    }
+  }
+
+  useEffect(() => {
+    fetchFaq();
+  },[])
+
+
   return (
     <section className="p-6 bg-white shadow-md rounded-lg">
       <div className="flex flex-col md:flex-row md:justify-between items-center mb-6">
@@ -37,23 +69,22 @@ const FaqList = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className="py-2 px-4 border-b text-gray-700">1</td>
+          {faq.map((item, index) => (
+            <tr key={index}>
+              <td className="py-2 px-4 border-b text-gray-700">{index + 1}</td>
               <td className="py-2 px-4 border-b text-gray-700">
-                Ahmedabad
+                {item.CityName}
               </td>
               <td className="py-2 px-4 border-b text-gray-700">
-                What types of transportation services does TruckMeru offer?
+              {item.Question}
               </td>
               <td className="py-2 px-4 border-b text-gray-700">
-                TruckMeru provides both full truck load and part truck load
-                transportation services across India. We also offer specialized
-                solutions for movers and packers.
+              {item.Answer}
               </td>
 
               <td className="py-2 px-4 border-b">
                 <div className="flex space-x-2">
-                  <button className="bg-red-600 text-white py-1 px-3 rounded hover:bg-red-700 transition">
+                  <button onClick={() => removeFaq(item._id)} className="bg-red-600 text-white py-1 px-3 rounded hover:bg-red-700 transition">
                     Delete
                   </button>
                   <button className="bg-blue-600 text-white py-1 px-3 rounded hover:bg-blue-700 transition">
@@ -62,6 +93,7 @@ const FaqList = () => {
                 </div>
               </td>
             </tr>
+            ))}
           </tbody>
         </table>
       </div>

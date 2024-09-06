@@ -1,9 +1,52 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import { toast } from 'react-toastify';
 
 const Faq = () => {
+  const url = "http://localhost:3000";
+
+  const [data, setData] = useState({
+    CityName:"",
+    Question: "",
+    Answer: ""
+  });
+
+  const onChangeHandler = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setData((data) => ({ ...data, [name]: value }));
+  };
+
+  const onSubmitHandler = async (event) => {
+    event.preventDefault();
+
+    
+
+    try {
+      const response = await axios.post(`${url}/api/faq/add`, data);
+      if (response.data.success) {
+        setData({
+          CityName:"",
+          Question:"",
+          Answer:""
+        });
+        toast.success(response.data.message)
+      } else {
+        toast.error(response.data.message)
+      }
+    } catch (error) {
+      console.error("there was an error adding faq", error);
+      toast.error("there was an error adding faq");
+    }
+  }
+
+  useEffect(() => {
+    console.table(data)
+  },[data])
+
   return (
     <div className="container mx-auto p-6 bg-white shadow-md rounded-lg">
-      <form >
+      <form  onSubmit={onSubmitHandler}>
         <div className="flex justify-between items-center mb-6">
           <h1 className="font-bold text-gray-800 text-2xl">Frequently Asked Questions</h1>
           <div className="flex gap-3">
@@ -31,7 +74,8 @@ const Faq = () => {
               Question
             </label>
             <input
-             
+             onChange={onChangeHandler}
+             value={data.Question}
               id="Question"
               name="Question"
               className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-red-600"
@@ -47,7 +91,8 @@ const Faq = () => {
               Answer
             </label>
             <input
-              
+              onChange={onChangeHandler}
+              value={data.Answer}
               id="Answer"
               name="Answer"
               className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-red-600"
@@ -60,12 +105,13 @@ const Faq = () => {
         <div className="mb-6">
           <label
             className="text-xl font-medium text-gray-600 m-2 block"
-            htmlFor="review"
+            htmlFor="CityName"
           >
             City Name
           </label>
           <input
-            
+            onChange={onChangeHandler}
+            value={data.CityName}
             id="CityName"
             name="CityName"
             className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-red-600"

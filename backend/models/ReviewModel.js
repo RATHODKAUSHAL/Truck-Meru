@@ -5,6 +5,7 @@ const ReviewSchema = new mongoose.Schema({
     CityName: { type: String, required: true },
     CustomerReview: { type: String, required: true },
     Ranking: { type: Number, required: true, min: 1, max: 5 }, // Validation added
+    createdAt: { type: Date, default: Date.now } // Automatically set the current date
 }, {
     collection: 'reviews' // Explicitly specify the collection name
 });
