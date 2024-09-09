@@ -7,6 +7,7 @@ import userRouter from "./routes/userRoute.js";
 import ReviewRouter from "./routes/ReviewRoute.js";
 import authMiddleware from "./middleware/auth.js"; // Import the middleware
 import FaqRouter from "./routes/FaqRoute.js";
+import TransportRouter from "./routes/TransportRouter.js";
 
 const app = express();
 const port = 3000;
@@ -22,6 +23,7 @@ connectDB();
 app.use("/api/user", authMiddleware, userRouter); // Apply middleware to user routes
 app.use("/api/review",  ReviewRouter); // Apply middleware to review routes
 app.use("/api/faq",  FaqRouter);
+app.use("/api/transport", TransportRouter)
 
 app.get("/" , (req, res) => {
     res.send('Hello World')

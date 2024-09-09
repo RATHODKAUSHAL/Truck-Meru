@@ -6,6 +6,7 @@ import City from "./component/Pages/City/City";
 import Sidebar from "./component/Navbar/Sidebar";
 import Navbar from './component/Navbar/Navbar';
 import Add from './component/Pages/Add/Add';
+import Edit from './component/Pages/Add/Edit';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Login from './component/Login/Login';
@@ -13,6 +14,8 @@ import CustomerReview from './component/Pages/Customer-Review/CustomerReview';
 import CustomerList from './component/Pages/Customer-Review/CustomerList';
 import Faq from './component/Pages/FAQ/Faq';
 import FaqList from './component/Pages/FAQ/FaqList';
+import TransportCitiesList from './component/Pages/TransportCities/TransportCitiesList';
+import TransportCities from './component/Pages/TransportCities/TransportCities';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -51,7 +54,10 @@ function App() {
                 <Route path="/admin/dashboard" element={<Dashboard />} />
                 <Route path="/admin/city" element={<City />} />
                 <Route path="/admin/city/add" element={<Add />} />
+                <Route path="/admin/city/edit/:id?" element={<Edit/>} />
                 <Route path="/admin/Customer-List" element={<CustomerList />} />
+                <Route path="/admin/Transport-Cities-List" element={<TransportCitiesList />} />
+                <Route path="/admin/Transport-Cities" element={<TransportCities />} />
                 <Route path="/admin/customer-review" element={<CustomerReview />} />
                 <Route path="/admin/faq" element={<Faq />} />
                 <Route path="/admin/faq-list" element={<FaqList />} />

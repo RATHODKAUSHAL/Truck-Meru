@@ -16,9 +16,8 @@ const storage = multer.diskStorage({
 const upload = multer({storage:storage})
 
 CityRouter.post("/add",upload.single("image"),addCity)
-CityRouter.get(`/list`, listCity)
+CityRouter.get(`/list/:id?`, listCity)
 CityRouter.post("/delete", removeCity)
-CityRouter.post("/Edit", editCity )
+CityRouter.put("/edit/:id", editCity )
 CityRouter.get(`/singlecity/:CityName`,getCityByName )
-
 export default CityRouter;

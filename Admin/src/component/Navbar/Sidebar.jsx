@@ -83,9 +83,9 @@ const Sidebar = () => {
         <span>FAQ</span>
       </Link>
 
-      <a href="/admin/site-urls" className="flex items-center p-2 hover:bg-gray-700 rounded">
+      <a href="/admin/Transport-Cities-List" className="flex items-center p-2 hover:bg-gray-700 rounded">
         <FaLink className="mr-3" />
-        <span>Site URLs</span>
+        <span>TransportCitiesList</span>
       </a>
 
       <Link to={"/admin/Customer-List"} className="flex items-center p-2 hover:bg-gray-700 rounded">
