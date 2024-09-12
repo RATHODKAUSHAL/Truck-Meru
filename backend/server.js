@@ -20,7 +20,7 @@ app.use(cors());
 connectDB();
 
 // Apply the authentication middleware to routes that need protection
-app.use("/api/user", authMiddleware, userRouter); // Apply middleware to user routes
+app.use("/api/user", userRouter); // Apply middleware to user routes
 app.use("/api/review",  ReviewRouter); // Apply middleware to review routes
 app.use("/api/faq",  FaqRouter);
 app.use("/api/transport", TransportRouter)

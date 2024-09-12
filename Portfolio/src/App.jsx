@@ -1,4 +1,4 @@
-import React, {useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import { Route, Routes} from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
@@ -12,13 +12,29 @@ import City from './Admin/City';
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if(token){
+      setShowLogin(true);
+    }
+  },[]);
+
+  const handleLogin = () => {
+    setShowLogin(true);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setShowLogin(false)
+  };
   
   return (
     
     <div>
       
-      {showLogin ? <Login setShowLogin={setShowLogin} /> : null}
-      <Navbar setShowLogin={setShowLogin} />
+      {!showLogin ? (<Login onLogin={handleLogin} /> ):( 
+      <>
+      <Navbar onLogout={handleLogout} />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/:city' element={<City/>} />
@@ -26,6 +42,8 @@ function App() {
         <Route path='/contact' element={<Contact />} />
         <Route path='/faq' element={<FAQ />} />
       </Routes>
+      </>
+      )}
     </div>
   );
 }

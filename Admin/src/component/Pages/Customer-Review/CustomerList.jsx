@@ -42,7 +42,7 @@ const CustomerList = () => {
         </h1>
         <a
           href="/admin/customer-review"
-          className="bg-red-600 text-white rounded-full py-2 px-6 hover:bg-red-700 transition"
+          className="bg-blue-600 text-white rounded-full py-2 px-6 hover:bg-blue-700 transition"
         >
           Add Customer Review
         </a>
@@ -88,14 +88,14 @@ const CustomerList = () => {
                   {item.CustomerReview}
                 </td>
                 <td className="py-2 px-4 border-b text-gray-700">
-                  {item.Ranking}
+                  {item.Ranking}/5
                 </td>
                 <td className="py-2 px-4 border-b">
                   <div className="flex space-x-2">
-                    <button onClick={() => removeReview(item._id)} className="bg-red-600 text-white py-1 px-3 rounded hover:bg-red-700 transition">
+                    <button onClick={() => removeReview(item._id)} className="bg-blue-600 rounded-full text-white py-1 px-3  hover:bg-blue-700 transition">
                       Delete
                     </button>
-                    <button className="bg-blue-600 text-white py-1 px-3 rounded hover:bg-blue-700 transition">
+                    <button className="bg-gray-600 text-white py-1 px-3 rounded-full hover:bg-gray-900 transition">
                       Edit
                     </button>
                   </div>

@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
+import "ckeditor5/ckeditor5.css";
 import "./Texteditor.css";
 
 import {
@@ -42,7 +43,6 @@ import {
   Undo,
 } from "ckeditor5";
 
-import "ckeditor5/ckeditor5.css";
 
 export default function Texteditor({ value, onChange, name }) {
   // console.log(value)
@@ -51,8 +51,8 @@ export default function Texteditor({ value, onChange, name }) {
   const [isLayoutReady, setIsLayoutReady] = useState(false);
 
   useEffect(() => {
-	  setIsLayoutReady(true);
-	  return () => setIsLayoutReady(false);
+    setIsLayoutReady(true);
+    return () => setIsLayoutReady(false);
   }, []);
 
   const editorConfig = {
@@ -191,14 +191,14 @@ export default function Texteditor({ value, onChange, name }) {
   };
 
   const handleEditorChange = (event, editor) => {
-	const data = editor.getData();
-	onChange({
-		target: {
-			name,
-			value: data,
-		}
-	});
-};
+    const data = editor.getData();
+    onChange({
+      target: {
+        name,
+        value: data,
+      },
+    });
+  };
   return (
     <div>
       <div className="main-container">
@@ -210,15 +210,15 @@ export default function Texteditor({ value, onChange, name }) {
             <div ref={editorRef}>
               {isLayoutReady && (
                 <CKEditor
-				editor={ClassicEditor}
-				config={editorConfig}
-				data="" // Start with empty data
-				onReady={(editor) => {
-				  // Set the value only when the editor is ready
-				  editor.setData(value || "");
-				}}
-				onChange={handleEditorChange}
-			  />
+                  editor={ClassicEditor}
+                  config={editorConfig}
+                  data="" // Start with empty data
+                  onReady={(editor) => {
+                    // Set the value only when the editor is ready
+                    editor.setData(value || "");
+                  }}
+                  onChange={handleEditorChange}
+                />
               )}
             </div>
           </div>

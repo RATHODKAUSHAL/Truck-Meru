@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Add.css";
 import upload_area from "../../../assets/upload_area.png";
 import axios from "axios";
 import { toast } from "react-toastify";
-import Texteditor from "../../Texteditor/Texteditor";
+import { Editor } from '@tinymce/tinymce-react';
 
 const Add = () => {
   const url = "http://localhost:3000";
   const [image, setImage] = useState(null);
+  const [cityIcon, setCityIcon] = useState(null);
+  const editorRef = useRef(null);
 
   const [data, setData] = useState({
     CityName: "",
@@ -19,7 +21,11 @@ const Add = () => {
   const onChangeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    setData((data) => ({ ...data, [name]: value }));
+    setData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleEditorChange = (content) => {
+    setData((prevData) => ({ ...prevData, Citydescription: content }));
   };
 
   const onSubmitHandler = async (event) => {
@@ -29,7 +35,6 @@ const Add = () => {
       toast.error("Please upload an image");
       return;
     }
-    
 
     const formData = new FormData();
     formData.append("CityName", data.CityName);
@@ -37,6 +42,7 @@ const Add = () => {
     formData.append("description", data.description);
     formData.append("Citydescription", data.Citydescription);
     formData.append("image", image);
+    formData.append("CityIcon", cityIcon);
 
     try {
       const response = await axios.post(`${url}/api/city/add`, formData);
@@ -48,6 +54,7 @@ const Add = () => {
           Citydescription: "",
         });
         setImage(null);
+        setCityIcon(null);
         toast.success(response.data.message);
       } else {
         toast.error(response.data.message);
@@ -76,8 +83,7 @@ const Add = () => {
             ADD
           </button>
           <a
-          href="/admin/city"
-            type="submit"
+            href="/admin/city"
             className="bg-blue-600 text-white rounded-full py-2 px-4 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50 transition"
           >
             Back
@@ -119,6 +125,19 @@ const Add = () => {
           </div>
 
           <div>
+            <label className="text-gray-700" htmlFor="CityIcon">
+              City Icon
+            </label>
+            <input
+              onChange={(event) => setCityIcon(event.target.files[0])}
+              type="file"
+              name="CityIcon"
+              id="CityIcon"
+              className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            />
+          </div>
+
+          <div>
             <label className="text-gray-700" htmlFor="CityHeader">
               City Header
             </label>
@@ -152,10 +171,24 @@ const Add = () => {
             <label className="text-gray-700" htmlFor="Citydescription">
               City Description
             </label>
-            <Texteditor
-              onChange={onChangeHandler}
+            <Editor
               value={data.Citydescription}
-              name="Citydescription"
+              onEditorChange={handleEditorChange}
+              apiKey="t30ujsyvwgdpoavm9zywyk8nv8oid2afl2ittgu3d33aiv5j"
+              init={{
+                height: 500,
+                menubar: true,
+                plugins: [
+                  'advlist autolink lists link image charmap preview anchor',
+                  'searchreplace visualblocks code fullscreen',
+                  'insertdatetime media table code help wordcount'
+                ],
+                toolbar:
+                  'undo redo | formatselect | bold italic | \
+                  alignleft aligncenter alignright alignjustify | \
+                  bullist numlist outdent indent | removeformat | help',
+                content_css: 'https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css',
+              }}
             />
           </div>
         </div>

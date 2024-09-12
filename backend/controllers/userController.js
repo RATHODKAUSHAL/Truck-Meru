@@ -68,4 +68,22 @@ const registerUser = async (req, res) => {
     }
 };
 
-export { loginUser, registerUser };
+
+const listUser = async (req, res) => {
+    try {
+        const user = req.query.name;
+    
+        let filter = {};
+    
+        if (user) {
+          filter = { name: { $regex: new RegExp(user, "i") } };
+        }
+        const users = await userModel.find(filter);
+          res.json({ success: true, data:users });
+      } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: "Error" });
+      }
+}
+
+export { loginUser, registerUser, listUser };

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import './CityDetails.css'
 
 const CityDetails = ({ city }) => {
   const [cityData, setCityData] = useState(null);
   const url = "http://localhost:3000";
+  const [citydescription, setcitydescrtion] = useState(null)
 
   const fetchCityData = async () => {
     try {
@@ -13,11 +15,13 @@ const CityDetails = ({ city }) => {
           (item) => item.CityName.toLowerCase() === city.toLowerCase()
         );
         setCityData(matchedCity);
+        setcitydescrtion(matchedCity.Citydescription)
       }
     } catch (error) {
       console.error('Error fetching city data:', error);
     }
   };
+
 
   useEffect(() => {
     fetchCityData();
@@ -35,6 +39,7 @@ const CityDetails = ({ city }) => {
           <span className="text-gray-400"> &#62; </span>
           <a href={`/TransportService/${cityData.CityName}`}>
             Transport Service in {cityData.CityName}
+            
           </a>
         </nav>
       </section>
@@ -62,18 +67,20 @@ const CityDetails = ({ city }) => {
                 className="w-full rounded-lg shadow-lg object-cover"
               />
             </div>
+            <h1>test 1 </h1>
+            <h1>test 1 </h1>
           </div>
         </div>
       </section>
 
-      <section className="bg-gray-50">
+      <section className="bg-gray-50 ">
         <div className="mx-6 px-4 text-justify">
-          <div className="row">
-            <div className="col-md-12 px-4 mt-8 text-gray-600 text-xl font-normal">
+          <div className="row flex flex-wrap">
+            <div className="col-md-12 px-4 mt-8 text-gray-600 text-xl font-normal  ">
               <div
-                className="pb-5"
-                dangerouslySetInnerHTML={{ __html: cityData.Citydescription }}
-              />
+                className="pb-5 "
+                dangerouslySetInnerHTML={{ __html: citydescription }}
+              ></div>
             </div>
           </div>
         </div>

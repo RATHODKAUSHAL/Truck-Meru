@@ -52,17 +52,35 @@ const CustomerReview = () => {
           <div className="flex gap-3">
             <button
               type="submit"
-              className="bg-red-600 text-white rounded-full py-2 px-4 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-50 transition"
+              className="bg-blue-600 text-white rounded-full py-2 px-4 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50 transition"
             >
               ADD
             </button>
             <a
               href="/admin/Customer-List"
-              className="bg-blue-600 text-white rounded-full py-2 px-4 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50 transition"
+              className="bg-gray-800 text-white rounded-full py-2 px-4 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 transition"
             >
               Back
             </a>
           </div>
+        </div>
+
+        <div className="mb-6">
+          <label
+            className="text-xl font-medium text-gray-600 m-2 block"
+            htmlFor="review"
+          >
+            Review
+          </label>
+          <textarea
+            onChange={onChangeHandler}
+            value={data.CustomerReview}
+            id="CustomerReview"
+            name="CustomerReview"
+            className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-gray-600"
+            placeholder="Enter Your Review Here"
+            rows="4"
+          ></textarea>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -78,7 +96,7 @@ const CustomerReview = () => {
               value={data.CustomerName}
               id="CustomerName"
               name="CustomerName"
-              className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-red-600"
+              className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-gray-600"
               placeholder="Enter Customer Name"
               type="text"
             />
@@ -95,29 +113,11 @@ const CustomerReview = () => {
               value={data.CityName}
               id="CityName"
               name="CityName"
-              className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-red-600"
+              className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-gray-600"
               placeholder="Enter City Name"
               type="text"
             />
           </div>
-        </div>
-
-        <div className="mb-6">
-          <label
-            className="text-xl font-medium text-gray-600 m-2 block"
-            htmlFor="review"
-          >
-            Review
-          </label>
-          <textarea
-            onChange={onChangeHandler}
-            value={data.CustomerReview}
-            id="CustomerReview"
-            name="CustomerReview"
-            className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-red-600"
-            placeholder="Enter Your Review Here"
-            rows="4"
-          ></textarea>
         </div>
 
         <div className="mb-6">
@@ -132,7 +132,7 @@ const CustomerReview = () => {
             value={data.Ranking}
             id="Ranking"
             name="Ranking"
-            className="w-full md:w-1/4 border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-red-600"
+            className="w-full md:w-1/4 border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-gray-600"
           >
             <option value="1">1</option>
             <option value="2">2</option>

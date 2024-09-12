@@ -13,9 +13,13 @@ const storage = multer.diskStorage({
     }
 })
 
-const upload = multer({storage:storage})
+const upload = multer({storage : storage})
+const multiUpload = upload.fields([
+    { name: 'image', maxCount: 1 }, // For city image (1 file)
+    { name: 'CityIcon', maxCount: 1 }, // For header image (1 file)
+]);
 
-CityRouter.post("/add",upload.single("image"),addCity)
+CityRouter.post("/add",multiUpload ,addCity)
 CityRouter.get(`/list/:id?`, listCity)
 CityRouter.post("/delete", removeCity)
 CityRouter.put("/edit/:id", editCity )

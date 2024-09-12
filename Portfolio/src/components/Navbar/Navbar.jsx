@@ -3,7 +3,7 @@ import { Sling as Hamburger } from "hamburger-react";
 import axios from 'axios'
 import { Link } from "react-router-dom";
 
-const Navbar = ({ setShowLogin }) => {
+const Navbar = ({ setShowLogin, onLogout }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [IsOpen, setOpen] = useState(false);
   const [city, setCity] = useState(null); // Change to a single object instead of an array
@@ -110,10 +110,10 @@ const Navbar = ({ setShowLogin }) => {
               />
             </button>
             <button
-              onClick={() => setShowLogin(true)}
+              onClick={onLogout}
               className="bg-red-600 text-white font-bold text-base h-8 w-20 sm:h-10 sm:w-24 md:h-12 md:w-28 lg:h-14 lg:w-32 px-2 py-1 sm:px-4 sm:py-2 rounded-full hover:bg-white hover:text-red-600 transition-all duration-300  sm:text-base md:text-lg"
             >
-              Login
+              Logout
             </button>
 
             {/* Hamburger Menu Icon - Visible below 950px */}
