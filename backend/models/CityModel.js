@@ -5,8 +5,8 @@ const CitySchema = new mongoose.Schema({
     CityHeader : {type:String, required:true},
     description : {type:String, required:true},
     Citydescription : {type:String, required:true},
-    image: {type:String, required:true},
-    CityIcon: {type:String, required:true},
+    image: {type:String, required:false},
+    CityIcon: {type:String, required:false},
 })
 
 const CityModel = mongoose.models.City || mongoose.model("city", CitySchema);

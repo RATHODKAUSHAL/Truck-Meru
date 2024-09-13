@@ -67,8 +67,7 @@ const CityDetails = ({ city }) => {
                 className="w-full rounded-lg shadow-lg object-cover"
               />
             </div>
-            <h1>test 1 </h1>
-            <h1>test 1 </h1>
+           
           </div>
         </div>
       </section>

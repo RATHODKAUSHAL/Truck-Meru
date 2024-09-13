@@ -1,12 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaUser, FaSignOutAlt } from 'react-icons/fa';
 import { Menu, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
+import axios from 'axios';
 
 const Navbar = ({ onLogout }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
   const handleDropdownToggle = () => setIsDropdownOpen(!isDropdownOpen);
+  // const [user, setUser] = useState()
+
+  // const url = "http://localhost:3000";
+
+  // const showUser = async () => {
+  //   const response = await axios.get(`${url}/api/user/list`)
+    
+  //   if(response.data.success){
+  //     setUser(response.data.data)
+  //   }else{
+  //     console.error(error)
+  //   }
+    
+  // }
+   
+  // useEffect(() => {
+  //   showUser()
+  // },[]) 
 
   return (
     <div className="w-full bg-gray-50 h-20 shadow-md">
@@ -23,11 +41,10 @@ const Navbar = ({ onLogout }) => {
         {/* Dropdown Menu */}
         <div className="relative">
           <button
-            onClick={handleDropdownToggle}
-            className="flex items-center space-x-2 text-gray-700 hover:text-gray-900 focus:outline-none"
+            onMouseEnter={handleDropdownToggle}
+            className="flex justify-center items-center h-12 space-x-2 w-12 bg-gray-300 rounded-md text-gray-700 hover:text-gray-900 focus:outline-none"
           >
-            <FaUser className="text-xl" />
-            <span className="hidden md:inline">User</span>
+            <FaUser className="text-2xl" />
           </button>
 
           <Transition
@@ -59,7 +76,7 @@ const Navbar = ({ onLogout }) => {
                       className={`block px-4 py-2 text-sm ${active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'}`}
                     >
                       <FaSignOutAlt className="inline mr-2" />
-                      Logout
+                      SignOut
                     </button>
                   )}
                 </Menu.Item>

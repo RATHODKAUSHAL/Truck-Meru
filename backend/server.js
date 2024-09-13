@@ -8,6 +8,7 @@ import ReviewRouter from "./routes/ReviewRoute.js";
 import authMiddleware from "./middleware/auth.js"; // Import the middleware
 import FaqRouter from "./routes/FaqRoute.js";
 import TransportRouter from "./routes/TransportRouter.js";
+import TrackingRouter from "./routes/ExternalTrackingRouter.js";
 
 const app = express();
 const port = 3000;
@@ -24,6 +25,7 @@ app.use("/api/user", userRouter); // Apply middleware to user routes
 app.use("/api/review",  ReviewRouter); // Apply middleware to review routes
 app.use("/api/faq",  FaqRouter);
 app.use("/api/transport", TransportRouter)
+app.use("/api/externaltracking", TrackingRouter);
 
 app.get("/" , (req, res) => {
     res.send('Hello World')

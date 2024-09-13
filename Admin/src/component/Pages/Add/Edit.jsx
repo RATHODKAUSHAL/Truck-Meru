@@ -19,6 +19,7 @@ const Edit = () => {
     Citydescription: "",
     image: null,
     imagePreview: upload_area,
+    CityIcon: null,
   });
 
   const fetchCityData = async (id) => {
@@ -33,6 +34,7 @@ const Edit = () => {
           Citydescription: cityData.Citydescription || "",
           image: null,
           imagePreview: cityData.image ? `${url}/images/${cityData.image}` : upload_area,
+          CityIcon: null,
         });
       } else {
         toast.error("Failed to fetch city data.");
@@ -57,27 +59,31 @@ const Edit = () => {
     const file = e.target.files[0];
     setData((prevData) => ({
       ...prevData,
-      image: file,
+      [e.target.name]: file,
       imagePreview: file ? URL.createObjectURL(file) : upload_area,
     }));
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
+
     const formData = new FormData();
     formData.append("CityName", data.CityName || "");
     formData.append("CityHeader", data.CityHeader || "");
     formData.append("description", data.description || "");
     formData.append("Citydescription", data.Citydescription || "");
-    
+
     if (data.image) {
       formData.append("image", data.image);
     }
-  
+    
+    if (data.CityIcon) {
+      formData.append("CityIcon", data.CityIcon);
+    }
+
     // Log FormData to inspect its contents
     console.log("FormData:", Array.from(formData.entries()));
-  
+
     try {
       if (id) {
         const response = await axios.put(`${url}/api/city/edit/${id}`, formData, {
@@ -85,10 +91,10 @@ const Edit = () => {
             'Content-Type': 'multipart/form-data',
           },
         });
-  
+
         // Log the response to check its content
         console.log("Response:", response);
-  
+
         if (response.status === 200) {
           toast.success("City updated successfully!");
           navigate("/admin/city");
@@ -101,10 +107,6 @@ const Edit = () => {
       toast.error("Failed to save city data.");
     }
   };
-  
-  useEffect(() => {
-    handleSubmit()
-  },[data])
 
   return (
     <div className="add container mx-auto p-4">
@@ -178,6 +180,19 @@ const Edit = () => {
         </div>
 
         <div>
+          <label htmlFor="CityIcon" className="block text-sm font-medium text-gray-700">
+            City Icon
+          </label>
+          <input
+            onChange={onFileChangeHandler}
+            type="file"
+            name="CityIcon"
+            id="CityIcon"
+            className="mt-1 block w-full text-sm text-gray-500 border border-gray-300 rounded-lg cursor-pointer focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+          />
+        </div>
+
+        <div>
           <label htmlFor="Citydescription" className="block text-sm font-medium text-gray-700">
             City Description
           </label>
@@ -189,7 +204,7 @@ const Edit = () => {
             apiKey="t30ujsyvwgdpoavm9zywyk8nv8oid2afl2ittgu3d33aiv5j"
             init={{
               height: 500,
-              menubar: false,
+              menubar: true,
               plugins: [
                 'a11ychecker','advlist','advcode','advtable','autolink','checklist','export',
                 'lists','link','image','charmap','preview','anchor','searchreplace','visualblocks',
@@ -197,6 +212,7 @@ const Edit = () => {
              ],
               toolbar:
                 "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat'",
+                content_css: 'https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css',
             }}
           />
         </div>

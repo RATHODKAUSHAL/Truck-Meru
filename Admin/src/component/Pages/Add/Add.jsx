@@ -176,7 +176,7 @@ const Add = () => {
               onEditorChange={handleEditorChange}
               apiKey="t30ujsyvwgdpoavm9zywyk8nv8oid2afl2ittgu3d33aiv5j"
               init={{
-                height: 500,
+                height: 300,
                 menubar: true,
                 plugins: [
                   'advlist autolink lists link image charmap preview anchor',
