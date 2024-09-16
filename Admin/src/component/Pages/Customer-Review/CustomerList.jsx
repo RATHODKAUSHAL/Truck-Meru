@@ -95,9 +95,9 @@ const CustomerList = () => {
                     <button onClick={() => removeReview(item._id)} className="bg-blue-600 rounded-full text-white py-1 px-3  hover:bg-blue-700 transition">
                       Delete
                     </button>
-                    <button className="bg-gray-600 text-white py-1 px-3 rounded-full hover:bg-gray-900 transition">
+                    <a href={`/admin/customer-review/${item._id}`} className="bg-gray-600 text-white cursor-pointer py-1 px-3 rounded-full hover:bg-gray-900 transition">
                       Edit
-                    </button>
+                    </a>
                   </div>
                 </td>
               </tr>

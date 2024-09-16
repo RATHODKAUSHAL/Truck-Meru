@@ -61,7 +61,7 @@ function App() {
                 <Route path="/admin/Transport-Cities" element={<TransportCities />} />
                 <Route path="/admin/External-Tracting-List" element={<ExternalTrackingList />} />
                 <Route path="/admin/External-Tracting" element={<ExternalTracking />} />
-                <Route path="/admin/customer-review" element={<CustomerReview />} />
+                <Route path="/admin/customer-review/:id?" element={<CustomerReview />} />
                 <Route path="/admin/faq" element={<Faq />} />
                 <Route path="/admin/faq-list" element={<FaqList />} />
                 {/* other routes... */}

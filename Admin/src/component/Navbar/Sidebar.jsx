@@ -21,12 +21,12 @@ const Sidebar = () => {
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Logo Section */}
-      <div className="flex items-center justify-center mb-6 transition-all duration-500 ease-in-out">
+      <div className="flex items-start justify-start mb-6 transition-all duration-500 ease-in-out">
         <a href="/">
           <img
             src={logoSrc}
             alt="Logo"
-            className={`transition-all duration-500 ease-in-out ${isHovered ? 'h-8 w-28' : 'h-5 w-5'}`}
+            className={`transition-all  duration-500 ease-in-out ${isHovered ? 'h-8 w-28' : 'h-5 w-5'}`}
           />
         </a>
       </div>

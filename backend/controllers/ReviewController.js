@@ -18,21 +18,45 @@ const addReview = async (req, res) => {
     }
 };
 
-const listReview = async(req, res) => {
+const listReview = async (req, res) => {
     try {
         const cityReview = req.query.name;
+        const reviewId = req.query.id;
 
         let filter = {};
-        if(cityReview){
-            filter = {name: {$regex : new RegExp(cityReview, 'i')}};
+        
+        if (reviewId) {
+            // If 'id' is present, find review by 'id'
+            filter = { _id: reviewId };
+        } else if (cityReview) {
+            // If 'name' is present, apply the 'name' filter
+            filter = { name: { $regex: new RegExp(cityReview, 'i') } };
         }
+
         const city = await ReviewModel.find(filter);
-        res.json({success:true, data:city})
+        res.json({ success: true, data: city });
     } catch (error) {
         console.log(error);
-        res.json({success:false,message:"Error"})
+        res.json({ success: false, message: "Error" });
     }
 }
+
+const getReviewById = async (req, res) => {
+    try {
+        const ReviewId = req.params.id;
+        const Review = await ReviewModel.findById(ReviewId);
+
+        if(Review){
+            return res.json({success:true, Review});
+        }else{
+            return res.json({sucess:false, message:"Review not Found"})
+        }
+    } catch (error) {
+        console.error("Error fetching Reveiw by id:", error);
+        return res.status(500).json({ message: "An error occurred", error });
+    }
+}
+
 
 const removeReview = async(req, res) => {
     try {
@@ -62,4 +86,4 @@ const updateReview = async (req, res) => {
 };  
 
 
-export {addReview, listReview, removeReview, updateReview}
+export {addReview, listReview, removeReview, updateReview, getReviewById}
