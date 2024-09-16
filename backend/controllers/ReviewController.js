@@ -44,5 +44,22 @@ const removeReview = async(req, res) => {
     }
 }
 
+const updateReview = async (req, res) => {
+    try {
+        const reviewId = req.params.id;
 
-export {addReview, listReview, removeReview}
+        const updatedReview = await ReviewModel.findByIdAndUpdate(reviewId, req.body, { new: true });
+
+        if (!updatedReview) {
+            return res.status(404).json({ success: false, message: "Review not found" });
+        }
+
+        res.json({ success: true, message: "Review updated successfully", data: updatedReview });
+    } catch (error) {
+        console.error("Error updating review:", error);
+        res.status(500).json({ success: false, message: "Error updating review", error: error.message });
+    }
+};  
+
+
+export {addReview, listReview, removeReview, updateReview}

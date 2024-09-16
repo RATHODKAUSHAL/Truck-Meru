@@ -92,15 +92,23 @@ const editCity = async (req, res) => {
     }
 
     try {
-        const city = await CityModel.findById(cityId);
-        if (!city) {
-            return res.status(404).json({ success: false, message: 'City not found' });
-        }
+        const updateData = {
+            CityName,
+            CityHeader,
+            description,
+            Citydescription
+        };
 
+        // If a new image is uploaded, delete the old one and update the image field
         if (req.file) {
+            const city = await CityModel.findById(cityId);
+            if (!city) {
+                return res.status(404).json({ success: false, message: 'City not found' });
+            }
+
             const oldImagePath = `uploads/${city.image}`;
 
-            // Check if the old image exists before attempting to delete
+            // Delete the old image if it exists
             try {
                 await fs.unlink(oldImagePath);
                 console.log('Old image deleted successfully.');
@@ -108,15 +116,19 @@ const editCity = async (req, res) => {
                 console.error('Error deleting old image:', err);
             }
 
-            city.image = req.file.filename;
+            updateData.image = req.file.filename;
         }
 
-        if (CityName) city.CityName = CityName;
-        if (CityHeader) city.CityHeader = CityHeader;
-        if (description) city.description = description;
-        if (Citydescription) city.Citydescription = Citydescription;
+        // Use findByIdAndUpdate to update the document
+        const updatedCity = await CityModel.findByIdAndUpdate(
+            cityId,
+            { $set: updateData },
+            { new: true, runValidators: true }
+        );
 
-        const updatedCity = await city.save();
+        if (!updatedCity) {
+            return res.status(404).json({ success: false, message: 'City not found' });
+        }
 
         res.status(200).json({ success: true, message: 'City updated successfully', data: updatedCity });
     } catch (error) {
@@ -124,5 +136,6 @@ const editCity = async (req, res) => {
         res.status(500).json({ success: false, message: 'Error updating city' });
     }
 };
+
 
 export { addCity, listCity, getCityByName, removeCity, editCity };

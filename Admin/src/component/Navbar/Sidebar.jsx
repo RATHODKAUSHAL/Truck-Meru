@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import React, { useState } from 'react';
 import { FaTruck, FaUser, FaMapMarkerAlt, FaBoxes, FaExternalLinkAlt, FaTruckMoving, FaDollarSign, FaBuilding, FaLink, FaStar, FaQuora } from 'react-icons/fa';
 

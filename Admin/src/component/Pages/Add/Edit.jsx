@@ -57,10 +57,12 @@ const Edit = () => {
 
   const onFileChangeHandler = (e) => {
     const file = e.target.files[0];
+    const name = e.target.name;
+
     setData((prevData) => ({
       ...prevData,
-      [e.target.name]: file,
-      imagePreview: file ? URL.createObjectURL(file) : upload_area,
+      [name]: file,
+      imagePreview: name === "image" && file ? URL.createObjectURL(file) : prevData.imagePreview,
     }));
   };
 
@@ -76,23 +78,19 @@ const Edit = () => {
     if (data.image) {
       formData.append("image", data.image);
     }
-    
+
     if (data.CityIcon) {
       formData.append("CityIcon", data.CityIcon);
     }
 
-    // Log FormData to inspect its contents
+    // Log FormData for debugging purposes
     console.log("FormData:", Array.from(formData.entries()));
 
     try {
       if (id) {
-        const response = await axios.put(`${url}/api/city/edit/${id}`, formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        });
+        const response = await axios.put(`${url}/api/city/edit/${id}`, formData);
 
-        // Log the response to check its content
+        // Log the response for debugging purposes
         console.log("Response:", response);
 
         if (response.status === 200) {
@@ -211,8 +209,8 @@ const Edit = () => {
                 'powerpaste','fullscreen','formatpainter','insertdatetime','media','table','help','wordcount'
              ],
               toolbar:
-                "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat'",
-                content_css: 'https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css',
+                "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat",
+              content_css: 'https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css',
             }}
           />
         </div>
