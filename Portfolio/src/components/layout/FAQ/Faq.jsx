@@ -2,7 +2,7 @@ import React from "react"
 
 const Faq = () => {
   return (
-    <div>
+    <div className="bg-gray-50">
   <section id="faq" className="pt-7">
     <div className="container mx-auto px-4">
       <h2 className="mb-6 text-3xl font-semibold text-center md:text-4xl">
@@ -11,15 +11,15 @@ const Faq = () => {
     </div>
   </section>
 
-  <section id="faq-accordion" className="text-lg md:text-xl">
+  <section id="faq-accordion" className="text-base  md:text-xl">
     {/* Main Container */}
-    <div className="container mx-auto px-4 md:px-6 mb-16 md:mb-32">
+    <div className="container mx-auto  px-4 md:px-6 mb-16 md:mb-32">
       {/* Accordion Container */}
-      <div className="max-w-2xl gap-4 mx-auto overflow-hidden">
+      <div className="max-w-5xl gap-4 mx-auto overflow-hidden">
         {/* Tab 1 */}
-        <div className="py-1 border-b outline-none group" tabIndex="1">
+        <div className=" border-b outline-none group px-3 py-2 border  mb-2 group rounded-lg   bg-white" tabIndex="1">
           {/* Tab Flex Container */}
-          <div className="flex items-center justify-between py-3 text-gray-500 transition duration-500 cursor-pointer group ease">
+          <div className="flex items-center bg-white  justify-between py-3 text-gray-500 transition duration-500 cursor-pointer group">
             {/* Tab Title */}
             <div className="transition duration-500 ease group-hover:text-red-500">
               What types of transportation services does TruckMeru offer?
@@ -42,7 +42,7 @@ const Faq = () => {
         </div>
 
         {/* Tab 2 */}
-        <div className="py-1 border-b outline-none group" tabIndex="2">
+        <div className="border-b outline-none group px-3 py-2 border  mb-2  rounded-lg bg-white" tabIndex="2">
           {/* Tab Flex Container */}
           <div className="flex items-center justify-between py-3 text-gray-500 transition duration-500 cursor-pointer group ease">
             {/* Tab Title */}
@@ -67,7 +67,7 @@ const Faq = () => {
         </div>
 
         {/* Tab 3 */}
-        <div className="py-1 border-b outline-none group" tabIndex="3">
+        <div className="border-b outline-none group px-3 py-2 border  mb-2 group rounded-lg bg-white" tabIndex="3">
           {/* Tab Flex Container */}
           <div className="flex items-center justify-between py-3 text-gray-500 transition duration-500 cursor-pointer group ease">
             {/* Tab Title */}
@@ -92,7 +92,7 @@ const Faq = () => {
         </div>
 
         {/* Tab 4 */}
-        <div className="py-1 border-b outline-none group" tabIndex="4">
+        <div className="border-b outline-none group px-3 py-2 border  mb-2 group rounded-lg bg-white" tabIndex="4">
           {/* Tab Flex Container */}
           <div className="flex items-center justify-between py-3 text-gray-500 transition duration-500 cursor-pointer group ease">
             {/* Tab Title */}
@@ -116,7 +116,7 @@ const Faq = () => {
         </div>
 
         {/* Tab 5 */}
-        <div className="py-1 border-b outline-none group" tabIndex="5">
+        <div className="border-b outline-none group px-3 py-2 border  mb-2 group rounded-lg bg-white" tabIndex="5">
           {/* Tab Flex Container */}
           <div className="flex items-center justify-between py-3 text-gray-500 transition duration-500 cursor-pointer group ease">
             {/* Tab Title */}

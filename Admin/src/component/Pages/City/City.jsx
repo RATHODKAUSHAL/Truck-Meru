@@ -54,6 +54,7 @@ const City = () => {
           <p>City Icon</p>
           <p>City Name</p>
           <p>City Header</p>
+          <p>Meta Data</p>
           <p>Action</p>
         </div>
 
@@ -64,6 +65,7 @@ const City = () => {
             <img src={`${url}/images/` + item.CityIcon} alt="Icon" className="w-20 mx-auto" />
             <p className="text-sm">{item.CityName}</p>
             <p className="text-sm ">{item.CityHeader}</p>
+            <p className="text-sm ">{item.MetaData}</p>
             <div className="flex justify-center gap-2">
               <button
                 onClick={() => removeCity(item._id)}

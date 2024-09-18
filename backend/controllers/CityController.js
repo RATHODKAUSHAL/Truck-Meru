@@ -8,6 +8,7 @@ const addCity = async (req, res) => {
     const City = new CityModel({
         CityName: req.body.CityName,
         CityHeader: req.body.CityHeader,
+        MetaData: req.body.MetaData,
         description: req.body.description,
         Citydescription: req.body.Citydescription,
         image: image,

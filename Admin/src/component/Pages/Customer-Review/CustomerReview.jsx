@@ -90,7 +90,7 @@ const CustomerReview = () => {
     <div className="container mx-auto p-6 bg-white shadow-md rounded-lg">
       <form onSubmit={onSubmitHandler}>
         <div className="flex justify-between items-center mb-6">
-          <h1 className="font-bold text-gray-800 text-2xl">
+          <h1 className="font-bold text-gray-800 text-xl">
             {isEdit ? "Edit Review" : "Add Review"}
           </h1>
           <div className="flex gap-3">

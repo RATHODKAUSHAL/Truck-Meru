@@ -35,9 +35,9 @@ const CustomerList = () => {
   }, []);
 
   return (
-    <section className="p-6 bg-white shadow-md rounded-lg">
+    <section className="p-6  bg-white shadow-md rounded-lg">
       <div className="flex flex-col md:flex-row md:justify-between items-center mb-6">
-        <h1 className="font-bold text-2xl text-gray-800 mb-4 md:mb-0">
+        <h1 className="font-bold text-lg text-gray-800 mb-4 md:mb-0">
           All Customer Review List
         </h1>
         <a

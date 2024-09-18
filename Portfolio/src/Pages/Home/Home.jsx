@@ -8,14 +8,14 @@ import CitySection from '../../components/layout/Citysection/CitySection'
 
 const Home = () => {
   return (
-    <>
+    <div className='bg-gray-50'>
       <Header/>
       <Booking/>
       <Community/>
       <CitySection/>
       <Faq/>
       <Footer/>
-    </>
+    </div>
   )
 }
 

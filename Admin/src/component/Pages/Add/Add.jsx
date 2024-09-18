@@ -15,6 +15,7 @@ const Add = () => {
     CityName: "",
     CityHeader: "",
     description: "",
+    MetaData: "",
     Citydescription: "",
   });
 
@@ -40,6 +41,7 @@ const Add = () => {
     formData.append("CityName", data.CityName);
     formData.append("CityHeader", data.CityHeader);
     formData.append("description", data.description);
+    formData.append("MetaData", data.MetaData);
     formData.append("Citydescription", data.Citydescription);
     formData.append("image", image);
     formData.append("CityIcon", cityIcon);
@@ -51,6 +53,7 @@ const Add = () => {
           CityName: "",
           CityHeader: "",
           description: "",
+          MetaData: "",
           Citydescription: "",
         });
         setImage(null);
@@ -163,6 +166,20 @@ const Add = () => {
               id="description"
               rows="4"
               placeholder="Enter City Description"
+              className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            />
+          </div>
+          <div>
+            <label className="text-gray-700" htmlFor="MetaData">
+            meta Data
+            </label>
+            <textarea
+              onChange={onChangeHandler}
+              value={data.MetaData}
+              name="MetaData"
+              id="MetaData"
+              rows="4"
+              placeholder="Enter City Meta Data"
               className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
             />
           </div>

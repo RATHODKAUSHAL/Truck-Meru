@@ -32,7 +32,7 @@ const Footer = () => {
             </p>
           </div>
 
-          <div>
+          <section>
             <h3 className="text-lg font-semibold mb-4">Learn More</h3>
             <ul className="text-gray-300 space-y-2">
               <li>
@@ -71,7 +71,7 @@ const Footer = () => {
                 </a>
               </li>
             </ul>
-          </div>
+          </section>
 
           <div>
             <h3 className="text-lg font-semibold mb-4">Transport Service In</h3>

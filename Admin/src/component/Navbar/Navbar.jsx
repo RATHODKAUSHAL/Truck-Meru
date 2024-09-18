@@ -63,12 +63,21 @@ const Navbar = ({ onLogout }) => {
                   {({ active }) => (
                     <button
                       onClick={() => console.log('Profile')}
-                      className={`block px-4 py-2 text-sm ${active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'}`}
+                      className={`block px-4 py-2 text-base ${active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'}`}
                     >
                       Profile
                     </button>
                   )}
                 </Menu.Item>
+                <hr />
+                <Menu.Item>
+                    <div
+                      className={`px-4 py-2 text-sm flex flex-row`}
+                    >
+                     <FaUser className="text-base inline mr-2" /> User
+                    </div>
+                </Menu.Item>
+                <hr />
                 <Menu.Item>
                   {({ active }) => (
                     <button

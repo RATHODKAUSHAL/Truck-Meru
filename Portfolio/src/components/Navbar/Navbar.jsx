@@ -8,6 +8,14 @@ const Navbar = ({ setShowLogin, onLogout }) => {
   const [IsOpen, setOpen] = useState(false);
   const [city, setCity] = useState(null); // Change to a single object instead of an array
   const url = "http://localhost:3000"
+  const [isVisible, setIsVisible] = useState(false);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior:'smooth',
+    });
+  }
 
 
   const toggleMenu = () => {
@@ -26,7 +34,18 @@ const Navbar = ({ setShowLogin, onLogout }) => {
   }
 
   useEffect(() => {
+    const toggleVisibility = () => {
+      if(window.pageYOffset > 200){
+        setIsVisible(true);
+      }else{
+        setIsVisible(false)
+      }
+    };
+
+    window.addEventListener('scroll', toggleVisibility);
     fetchCityName();
+
+    return () => window.removeEventListener('scroll', toggleVisibility);
   },[])
 
 
@@ -45,7 +64,7 @@ const Navbar = ({ setShowLogin, onLogout }) => {
                 />
               </a>
             </div>
-            <div className="hidden md:flex font-manrope font-medium text-lg gap-5 h-full items-center">
+            <div className="hidden md:flex font-manrope font-medium text-base gap-5 h-full items-center">
               <a href="/" className="mx-4 text-gray-700 hover:text-red-600">
                 Home
               </a>
@@ -96,8 +115,8 @@ const Navbar = ({ setShowLogin, onLogout }) => {
             {/* Top-to-bottom button */}
             <button
               id="btn-back-to-top"
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="fixed bottom-4 right-4 h-12 w-11 bg-red-600 text-white rounded-3xl"
+              onClick={scrollToTop}
+              className={`fixed bottom-4  right-4 h-12 w-11 bg-red-600 text-white rounded-3xl ${isVisible ? '' : 'hidden'}`}
             >
               <i className="fas fa-arrow-up"></i>
             </button>
@@ -111,7 +130,7 @@ const Navbar = ({ setShowLogin, onLogout }) => {
             </button>
             <button
               onClick={onLogout}
-              className="bg-red-600 text-white font-bold text-base h-8 w-20 sm:h-10 sm:w-24 md:h-12 md:w-28 lg:h-14 lg:w-32 px-2 py-1 sm:px-4 sm:py-2 rounded-full hover:bg-white hover:text-red-600 transition-all duration-300  sm:text-base md:text-lg"
+              className="bg-red-600 text-white font-bold text-base h-8 w-20 sm:h-10 sm:w-24 md:h-12 md:w-28 lg:h-14 lg:w-32 px-2 py-1 sm:px-4 sm:py-2 rounded-full hover:bg-red-700 hover:text-white transition-all duration-300  sm:text-base md:text-lg"
             >
               Logout
             </button>
