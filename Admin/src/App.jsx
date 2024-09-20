@@ -41,16 +41,16 @@ function App() {
   return (
     <div className="flex h-screen">
       {!isLoggedIn ? (
-        <div className="flex flex-grow items-center justify-center">
+        <div className="flex items-center justify-center">
           <Login onLogin={handleLogin} />
         </div>
       ) : (
         <>
           <Sidebar className="w-1/4" /> {/* Adjust width as needed */}
-          <div className="flex flex-col flex-grow">
+          <div className="flex flex-col">
             <ToastContainer />
             <Navbar className="h-16" onLogout={handleLogout} /> {/* Adjust height as needed */}
-            <div className="flex-grow overflow-auto p-4">
+            <div className="flex flex-none p-4">
               <Routes>
                 <Route path="/admin/dashboard" element={<Dashboard />} />
                 <Route path="/admin/city" element={<City />} />

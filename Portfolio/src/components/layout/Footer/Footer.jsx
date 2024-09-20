@@ -66,7 +66,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-red-600">
+                <a href="/external-traking" className="hover:text-red-600">
                   Tracking
                 </a>
               </li>

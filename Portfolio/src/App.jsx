@@ -7,6 +7,7 @@ import Contact from './components/Contact/Contact';
 import FAQ from './components/FAQ/Faq';
 import Login from './components/Login/Login';
 import City from './Admin/City';
+import ExternalTracking from './components/External-Tracking/External-Tracking';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/:city' element={<City/>} />
         <Route path='/about' element={<About />} />
+        <Route path='/external-traking' element={<ExternalTracking />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/faq' element={<FAQ />} />
       </Routes>

@@ -8,22 +8,36 @@ const City = () => {
   const [list, setList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
+  const [loading, setLoading] = useState(false);
 
   const fetchList = async () => {
-    const response = await axios.get(`${url}/api/city/list`);
-    if (response.data.success) {
-      setList(response.data.data);
-    } else {
-      toast.error("Error");
+    setLoading(true);
+    try {
+      const response = await axios.get(`${url}/api/city/list`);
+      if (response.data.success) {
+        setList(response.data.data);
+      } else {
+        toast.error("Error fetching cities");
+      }
+    } catch (error) {
+      toast.error("Error fetching cities");
+    } finally {
+      setLoading(false);
     }
   };
 
   const removeCity = async (cityId) => {
-    const response = await axios.post(`${url}/api/city/delete`, { id: cityId });
-    await fetchList();
-    response.data.success
-      ? toast.success(response.data.message)
-      : toast.error("Error");
+    try {
+      const response = await axios.post(`${url}/api/city/delete`, { id: cityId });
+      if (response.data.success) {
+        toast.success(response.data.message);
+        fetchList();
+      } else {
+        toast.error("Error deleting city");
+      }
+    } catch (error) {
+      toast.error("Error deleting city");
+    }
   };
 
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -47,42 +61,52 @@ const City = () => {
         </button>
       </div>
 
-      <section className="list-table p-4">
-        <div className="list-table-header text-sm font-semibold text-black grid grid-cols-6 bg-gray-200 text-center py-3 rounded-md">
-          <p>#</p>
-          <p>City Image</p>
-          <p>City Icon</p>
-          <p>City Name</p>
-          <p>City Header</p>
-          <p>Meta Data</p>
-          <p>Action</p>
-        </div>
+      <section className="list-table">
+  <div className="list-table-header text-sm font-semibold text-black grid grid-cols-6 bg-gray-200 text-center py-3 rounded-md shadow-md">
+    <p>#</p>
+    <p>City Image</p>
+    <p>City Icon</p>
+    <p>City Name</p>
+    <p>City Header</p>
+    {/* <p>Meta Data</p> */}
+    <p>Action</p>
+  </div>
 
-        {currentItems.map((item, index) => (
-          <div key={index} className="list-table-item text-black text-sm grid grid-cols-6 items-center text-center py-2 border-b">
-            <p>{indexOfFirstItem + index + 1}</p>
-            <img src={`${url}/images/` + item.image} alt="City" className="w-20 mx-auto" />
-            <img src={`${url}/images/` + item.CityIcon} alt="Icon" className="w-20 mx-auto" />
-            <p className="text-sm">{item.CityName}</p>
-            <p className="text-sm ">{item.CityHeader}</p>
-            <p className="text-sm ">{item.MetaData}</p>
-            <div className="flex justify-center gap-2">
-              <button
-                onClick={() => removeCity(item._id)}
-                className="bg-red-500 text-white rounded-md px-4 py-2 hover:bg-red-600"
-              >
-                Delete
-              </button>
-              <a
-                href={`/admin/city/edit/${item._id}`}
-                className="bg-gray-800 text-white rounded-md px-4 py-2 hover:bg-gray-900"
-              >
-                Edit
-              </a>
-            </div>
-          </div>
-        ))}
-      </section>
+  {loading ? (
+    <p className="text-center text-gray-600">Loading...</p>
+  ) : currentItems.length > 0 ? (
+    currentItems.map((item, index) => (
+      <div 
+        key={index} 
+        className={`list-table-item text-black text-sm grid grid-cols-6 items-center text-center py-2 border-b hover:bg-gray-100 transition duration-300 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}
+      >
+        <p>{indexOfFirstItem + index + 1}</p>
+        <img src={`${url}/images/` + item.image} alt="City" className="w-20 h-20 object-cover mx-auto rounded-md shadow-sm" />
+        <img src={`${url}/images/` + item.CityIcon} alt="Icon" className="w-20 h-20 object-cover mx-auto rounded-md shadow-sm" />
+        <p className="text-sm">{item.CityName}</p>
+        <p className="text-sm ">{item.CityHeader}</p>
+        {/* <p className="text-sm ">{item.MetaData}</p> */}
+        <div className="flex justify-center gap-2">
+          <button
+            onClick={() => removeCity(item._id)}
+            className="bg-red-500 text-white rounded-md px-4 py-2 hover:bg-red-600 transition duration-300"
+          >
+            Delete
+          </button>
+          <a
+            href={`/admin/city/edit/${item._id}`}
+            className="bg-gray-800 text-white rounded-md px-4 py-2 hover:bg-gray-900 transition duration-300"
+          >
+            Edit
+          </a>
+        </div>
+      </div>
+    ))
+  ) : (
+    <p className="text-center text-gray-600">No cities found.</p>
+  )}
+</section>
+
 
       {/* Pagination Controls */}
       <div className="flex justify-between items-center mt-6">
